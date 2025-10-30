@@ -1,0 +1,35 @@
+-- Step 1: Create the Sales table
+CREATE TABLE Sales (
+  sale_id NUMBER PRIMARY KEY,
+  student_id NUMBER,
+  product VARCHAR2(50),
+  sale_date DATE,
+  amount NUMBER(8,2)
+);
+
+-- Step 2: Insert sample sales data
+INSERT INTO Sales VALUES (1, 101, 'Laptop', TO_DATE('2025-07-24', 'YYYY-MM-DD'), 95000);
+INSERT INTO Sales VALUES (2, 102, 'Smartphone', TO_DATE('2025-07-22', 'YYYY-MM-DD'), 30000);
+INSERT INTO Sales VALUES (3, 103, 'Tablet', TO_DATE('2025-08-02', 'YYYY-MM-DD'), 20000);
+INSERT INTO Sales VALUES (4, 104, 'Monitor', TO_DATE('2025-08-05', 'YYYY-MM-DD'), 15000);
+-- Add more sales data as needed...
+
+-- Step 3: Create the Placements table
+CREATE TABLE Placements (
+  student_id NUMBER PRIMARY KEY,
+  name VARCHAR2(100)
+);
+
+-- Step 4: Insert sample placement data
+INSERT INTO Placements VALUES (101, 'Riya Sharma');
+INSERT INTO Placements VALUES (102, 'Aditya Verma');
+INSERT INTO Placements VALUES (103, 'Kiran Rao');
+INSERT INTO Placements VALUES (104, 'Sneha Mishra');
+-- To match sample, insert at least 4 students...
+
+-- Step 5: Query to retrieve student_id and name for students placed who also have sales (join with optimization)
+SELECT p.student_id, p.name
+FROM Placements p
+JOIN Sales s ON p.student_id = s.student_id
+-- Use optimizer hint or index if available for join efficiency
+ORDER BY p.student_id;
