@@ -1,0 +1,5 @@
+SELECT 
+  student_name || '  ' || department || '  ' || company || '  ' || TO_CHAR(package, 'FM9990.00') || '  ' || TO_CHAR(placement_date, 'DD-Mon-YYYY') AS placement_info
+FROM Placements
+WHERE package > 6
+ORDER BY placement_date;
