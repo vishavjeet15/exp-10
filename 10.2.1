@@ -1,0 +1,10 @@
+SELECT 
+  department, 
+  ROUND(AVG(package), 2) AS avg_package, 
+  COUNT(*) AS students_placed
+FROM 
+  Placements
+GROUP BY 
+  department
+ORDER BY 
+  avg_package DESC;
