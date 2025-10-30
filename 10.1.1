@@ -1,0 +1,38 @@
+-- 1. Create the Placements table
+CREATE TABLE Placements (
+  student_id NUMBER PRIMARY KEY,
+  name VARCHAR2(100),
+  department VARCHAR2(50),
+  company VARCHAR2(100),
+  package NUMBER(5,2),
+  placement_date DATE
+);
+
+-- 2. Insert 20 sample placement records
+INSERT INTO Placements VALUES (1, 'Riya Sharma', 'CSE', 'Infosys', 4.50, TO_DATE('2025-07-25', 'YYYY-MM-DD'));
+INSERT INTO Placements VALUES (2, 'Aditya Verma', 'ECE', 'TCS', 6.00, TO_DATE('2025-07-20', 'YYYY-MM-DD'));
+INSERT INTO Placements VALUES (3, 'Kiran Rao', 'MECH', 'Wipro', 5.50, TO_DATE('2025-08-01', 'YYYY-MM-DD'));
+INSERT INTO Placements VALUES (4, 'Sneha Mishra', 'CSE', 'Amazon', 12.00, TO_DATE('2025-08-05', 'YYYY-MM-DD'));
+INSERT INTO Placements VALUES (5, 'Vikas Reddy', 'IT', 'Cognizant', 5.00, TO_DATE('2025-08-10', 'YYYY-MM-DD'));
+INSERT INTO Placements VALUES (6, 'Aditi Singh', 'CSE', 'Google', 25.00, TO_DATE('2025-08-15', 'YYYY-MM-DD'));
+INSERT INTO Placements VALUES (7, 'Rahul Mehta', 'EEE', 'HCL', 4.80, TO_DATE('2025-08-12', 'YYYY-MM-DD'));
+INSERT INTO Placements VALUES (8, 'Priya Nair', 'CIVIL', 'L&T', 6.20, TO_DATE('2025-08-18', 'YYYY-MM-DD'));
+INSERT INTO Placements VALUES (9, 'Sandeep Kumar', 'CSE', 'Microsoft', 20.00, TO_DATE('2025-08-25', 'YYYY-MM-DD'));
+INSERT INTO Placements VALUES (10, 'Manisha Jain', 'ECE', 'Accenture', 5.60, TO_DATE('2025-08-28', 'YYYY-MM-DD'));
+INSERT INTO Placements VALUES (11, 'Aman Gupta', 'MECH', 'Bosch', 6.50, TO_DATE('2025-09-01', 'YYYY-MM-DD'));
+INSERT INTO Placements VALUES (12, 'Divya Iyer', 'CSE', 'Zoho', 7.00, TO_DATE('2025-09-05', 'YYYY-MM-DD'));
+INSERT INTO Placements VALUES (13, 'Rohit Das', 'IT', 'IBM', 8.00, TO_DATE('2025-09-10', 'YYYY-MM-DD'));
+INSERT INTO Placements VALUES (14, 'Nikita Chauhan', 'CSE', 'Flipkart', 10.00, TO_DATE('2025-09-15', 'YYYY-MM-DD'));
+INSERT INTO Placements VALUES (15, 'Suraj Patil', 'EEE', 'Tech Mahindra', 5.20, TO_DATE('2025-09-20', 'YYYY-MM-DD'));
+INSERT INTO Placements VALUES (16, 'Anjali Menon', 'IT', 'Oracle', 9.50, TO_DATE('2025-09-25', 'YYYY-MM-DD'));
+INSERT INTO Placements VALUES (17, 'Harish Reddy', 'CIVIL', 'Tata Projects', 6.80, TO_DATE('2025-09-30', 'YYYY-MM-DD'));
+INSERT INTO Placements VALUES (18, 'Pooja Singh', 'CSE', 'Paytm', 8.20, TO_DATE('2025-10-02', 'YYYY-MM-DD'));
+INSERT INTO Placements VALUES (19, 'Naveen Kumar', 'MECH', 'Hyundai', 7.50, TO_DATE('2025-10-05', 'YYYY-MM-DD'));
+INSERT INTO Placements VALUES (20, 'Lakshmi Devi', 'CSE', 'Capgemini', 6.00, TO_DATE('2025-10-10', 'YYYY-MM-DD'));
+
+COMMIT;
+
+-- 3. Query to display all placement records, ordered by student_id
+SELECT student_id, name, department, company, package, TO_CHAR(placement_date, 'YYYY-MM-DD') AS placement_date
+FROM Placements
+ORDER BY student_id;
