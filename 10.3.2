@@ -1,0 +1,14 @@
+-- Create index on student_id in Sales
+CREATE INDEX idx_sales_student_id ON Sales(student_id);
+
+-- Create index on sale_date in Sales
+CREATE INDEX idx_sales_sale_date ON Sales(sale_date);
+
+-- Create index on student_id in Placements
+CREATE INDEX idx_placements_student_id ON Placements(student_id);
+
+-- Show indexes for Sales table (Oracle syntax uses USER_INDEXES and USER_IND_COLUMNS)
+SELECT index_name, table_name, column_name, uniqueness
+FROM user_ind_columns
+WHERE table_name IN ('SALES', 'PLACEMENTS')
+ORDER BY table_name, index_name, column_position;
