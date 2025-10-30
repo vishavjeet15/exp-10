@@ -1,0 +1,4 @@
+SELECT student_id, name, department, company, package, placement_date
+FROM Placements
+WHERE placement_date >= CURRENT_DATE - 30
+ORDER BY placement_date DESC;
