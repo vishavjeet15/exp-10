@@ -1,0 +1,4 @@
+SELECT company, COUNT(*) AS students_placed
+FROM Placements
+GROUP BY company
+ORDER BY students_placed DESC;
