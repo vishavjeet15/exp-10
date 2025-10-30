@@ -1,0 +1,27 @@
+-- 1. Check existing indexes on Placements table
+SELECT index_name, column_name
+FROM user_ind_columns
+WHERE table_name = 'PLACEMENTS'
+ORDER BY index_name, column_position;
+
+-- 2. EXPLAIN PLAN before creating index
+EXPLAIN PLAN FOR
+SELECT * FROM Placements
+WHERE department = 'CSE' AND placement_date BETWEEN TO_DATE('2025-08-01', 'YYYY-MM-DD') AND TO_DATE('2025-09-01', 'YYYY-MM-DD');
+
+-- Display planned execution
+SELECT * FROM TABLE(DBMS_XPLAN.DISPLAY());
+
+-- 3. Create composite index on (department, placement_date)
+CREATE INDEX idx_dept_date ON Placements(department, placement_date);
+
+-- 4. Gather optimizer statistics after creating index
+EXEC DBMS_STATS.GATHER_TABLE_STATS(USER, 'PLACEMENTS');
+
+-- 5. EXPLAIN PLAN after creating index
+EXPLAIN PLAN FOR
+SELECT * FROM Placements
+WHERE department = 'CSE' AND placement_date BETWEEN TO_DATE('2025-08-01', 'YYYY-MM-DD') AND TO_DATE('2025-09-01', 'YYYY-MM-DD');
+
+-- Display new execution plan
+SELECT * FROM TABLE(DBMS_XPLAN.DISPLAY());
