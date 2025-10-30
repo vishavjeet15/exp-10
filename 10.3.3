@@ -1,0 +1,18 @@
+SELECT s.student_id, s.name, s.total_sales
+FROM (
+    SELECT p.student_id, p.name, SUM(s.amount) AS total_sales
+    FROM Placements p
+    JOIN Sales s ON p.student_id = s.student_id
+    WHERE p.company = 'TCS'
+    GROUP BY p.student_id, p.name
+) s
+WHERE s.total_sales = (
+    SELECT MAX(sub.total_sales)
+    FROM (
+        SELECT p.student_id, p.name, SUM(s.amount) AS total_sales
+        FROM Placements p
+        JOIN Sales s ON p.student_id = s.student_id
+        WHERE p.company = 'TCS'
+        GROUP BY p.student_id, p.name
+    ) sub
+);
